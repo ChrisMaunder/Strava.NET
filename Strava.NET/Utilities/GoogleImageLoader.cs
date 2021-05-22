@@ -17,13 +17,11 @@
 
 #endregion
 
-#if !NET_CORE
-
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using ImageSharp;
 using Strava.Common;
 using Strava.Http;
 
@@ -66,4 +64,3 @@ namespace Strava.Utilities
         }
     }
 }
-#endif

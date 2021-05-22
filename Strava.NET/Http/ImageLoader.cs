@@ -17,14 +17,12 @@
 
 #endregion
 
-#if !NET_CORE
-
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ImageSharp;
 
 namespace Strava.Http
 {
@@ -61,4 +59,3 @@ namespace Strava.Http
         }
     }
 }
-#endif

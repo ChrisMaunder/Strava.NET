@@ -17,8 +17,6 @@
 
 #endregion
 
-#if !NET_CORE
-
 using System;
 using System.Threading;
 using Strava.Authentication;
@@ -32,7 +30,7 @@ namespace Strava.Upload
     /// </summary>
     public class UploadStatusCheck
     {
-        private readonly Timer _timer;
+        private readonly System.Timers.Timer _timer;
         private CheckStatus _currentStatus;
         private readonly string _token;
         private readonly string _uploadId;
@@ -82,16 +80,19 @@ namespace Strava.Upload
         /// </summary>
         public UploadStatusCheck(string accessToken, string uploadId)
         {
-            TimerCallback timerTick = new TimerCallback(TimerTick);
-            _timer = new Timer(timerTick, this, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            // TimerCallback timerTick = new TimerCallback(TimerTick);
+            // _timer = new Timer(timerTick, this, 0, 1000);
+
+            _timer = new System.Timers.Timer(1000);
+            _timer.Elapsed += TimerTick;
 
             _token = accessToken;
             _uploadId = uploadId;
         }
 
-        private void TimerTick(object state)
+        private void TimerTick(object sender, System.Timers.ElapsedEventArgs e)
         {
-            UploadStatusCheck self = state as UploadStatusCheck;
+            UploadStatusCheck self = sender as UploadStatusCheck;
             if (self == null)
                 return;
 
@@ -155,4 +156,3 @@ namespace Strava.Upload
         }
     }
 }
-#endif

@@ -17,11 +17,10 @@
 
 #endregion
 
-#if !NET_CORE
-
 using System;
 using System.Collections.Specialized;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Threading;
 using Strava.Common;
@@ -64,7 +63,7 @@ namespace Strava.Authentication
         public LocalWebServer(string prefix)
         {
             _httpListener = new HttpListener();
-            _httpListener.refixes.Add(prefix);
+            _httpListener.Prefixes.Add(prefix);
         }
 
         /// <summary>
@@ -142,4 +141,3 @@ namespace Strava.Authentication
         }
     }
 }
-#endif
